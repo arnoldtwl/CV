@@ -178,9 +178,9 @@ footer a:hover {
 }
 
 .container .aside {
-    background: url('images/three-books-near-bookshelf.jpg') no-repeat center center;
+    background: url('images/booksshelved.jpg') no-repeat center center;
     background-size: cover;
-    color: #fff;
+    color: #1f0101;
     border-radius: 5px;
     text-align: left;
     padding: 1em;

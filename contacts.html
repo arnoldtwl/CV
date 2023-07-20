@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Arnold Twala">
+    <script src="https://kit.fontawesome.com/724c68c0fa.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="./images/logo.png" sizes="48x48">
+    <link rel="stylesheet" href="style.css">
+    <title>Contact Me</title>
+</head>
+
+<body>
+    <header id="top">
+        <div class="logo">
+            <img src="./Images/logo.png" alt="Logo" width="55" height="55">
+            <h1><a href="index.html">Shaped by the Pages</a></h1>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+                <li><a href="saveForLater.html">Save for Later</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="contact-page">
+        <div class="alert"></div>
+        <!-- Contact page with class for CSS styling -->
+        <section >
+            <h3>Contact Me</h3>
+            <p>Feel free to contact me for any questions or if you just want to say hi!</p>
+            <!-- A submit form for any questions-->
+            <form id="myForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required autocomplete="on">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required autocomplete="on">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required autocomplete="on"></textarea>
+                <button type="submit">Send Message</button>
+                <i class="fa-solid fa-floppy-disk" onclick="saveFormDraft('myForm')" title="Save draft"></i>
+            </form>
+        </section>
+            <!-- A section for my social media profiles -->
+        <section class="social-media">
+            <h4>Connect with me:</h4>
+            <!-- Links to my social media profiles -->
+            <ul>
+                <li><a href="https://www.linkedin.com/in/arnoldtwl/" target="_blank"><img src="./images/linkedin-logo.png" alt="Linkedin profile" width="45" height="45"></a></li>
+                <li><a href="https://twitter.com/arnoldtwl" target="_blank"><img src="./images/twitter-icon-blue.png" alt="Twitter profile" width="45" height="45"></a></li>
+            </ul>
+            <p><a href="mailto:arnoldtwl@gmail.com">Email Me</a></p>
+        </section>
+    </main>
+    <script>
+        const alertBox = document.querySelector('.alert');
+
+        const saveFormDraft = (formId) => {
+            const formD = document.getElementById(formId);
+            const formData = new FormData(formD);
+            const formObj = Object.fromEntries(formData.entries());
+            const formObjStr = JSON.stringify(formObj);
+            localStorage.setItem('formDraft', formObjStr);
+            alertBox.innerHTML = 'Form saved!';
+
+            setTimeout(() => {
+                alertBox.innerHTML = '';
+            }, 3000);
+        };
+
+        const getFormDraft = () => {
+            const formDraft = localStorage.getItem('formDraft');
+            if (formDraft) {
+                const formDraftObj = JSON.parse(formDraft);
+                const formD = document.getElementById('myForm');
+                for (const key in formDraftObj) {
+                    if (Object.hasOwnProperty.call(formDraftObj, key)) {
+                        const element = formDraftObj[key];
+                        formD[key].value = element;
+                    }
+                }
+            }
+        };   
+        
+        getFormDraft();
+
+        // Clear form draft on submit
+        const formD = document.getElementById('myForm');
+        formD.addEventListener('submit', () => {
+            localStorage.removeItem('formDraft');
+        });
+    </script>
+    <footer>
+        <p>A passion for reading, a gift for book lovers.</p>
+        <p>Created by: <a href="https://www.linkedin.com/in/arnoldtwl/">Arnold Twala</a>.</p>
+        <p>&copy; 2023 Shaped by the Pages. All rights reserved.</p>
+    </footer>
+    <script src="formSubmission.js"></script>
+</body>
+</html>

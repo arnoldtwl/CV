@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Arnold Twala">
+    <script src="https://kit.fontawesome.com/724c68c0fa.js" crossorigin="anonymous"></script>
+    <!-- google fonts links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap"
+        rel="stylesheet">
+    <!-- icon for the webpage Tab -->
+    <link rel="icon" type="image/png" href="./images/logo.png" sizes="48x48">
+    <link rel="stylesheet" href="style.css">
+    <title>Save for Later</title>
+</head>
+
+<body onload="displaySavedItems()">
+    <!-- this is the heading, and navigation menu for all three pages -->
+    <header id="top">
+        <div class="logo">
+            <img src="./Images/logo.png" alt="Logo" width="55" height="55">
+            <h1><a href="index.html">Shaped by the Pages</a></h1>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+                <li><a href="saveForLater.html">Save for Later</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- this is the section for the save for later page -->
+    <main>
+        <h1>Items Saved for Later</h1>
+        <p>Here are the items you've saved for later:</p>
+        <div id="savedItemsContainer">
+            <!-- this is where the saved items will be displayed -->
+        </div>
+    </main>
+    <!-- A link to that takes you back to the top of the page -->
+    <a href="#top">Back to top</a>
+    <!-- A footer that contains name and the date the website was created, all three pages uses the same footer -->
+    <script>
+        function displaySavedItems() {
+            // get the saved items from local storage
+            let savedItems = getSaveForLaterItems();
+
+            // get the container where the saved items will be displayed
+            let savedItemsContainer = document.getElementById("savedItemsContainer");
+
+            // Add each saved item to the div
+            savedItems.forEach(item => {
+                // If the content is an HTML element, append it directly
+                if (item.content instanceof HTMLElement) {
+                    savedItemsContainer.appendChild(item.content);
+                } else {
+                    // If the content is not an HTML element (for example, if it's a string),
+                    // create a new text node with the content and append that
+                    let textNode = document.createTextNode(item.content);
+                    savedItemsContainer.appendChild(textNode);
+                }
+            })
+        }
+    </script>
+    <footer>
+        <p>A passion for reading, a gift for book lovers.</p>
+        <p>Created by: <a href="https://www.linkedin.com/in/arnoldtwl/">Arnold Twala</a></p>
+        <p>&copy; 2023 Shaped by the Pages. All rights reserved.</p>
+    </footer>
+    <script src="saveForLater.js"></script>
+</body>
+    
+</html>
+
+   

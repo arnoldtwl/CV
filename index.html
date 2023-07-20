@@ -1,0 +1,203 @@
+<!-- Note: You will be adding functionality to your previous Capstone Project about
+your hobby, talent or passion of yours, so be sure to work with the index.html page
+and the other webpages you have already created.
+Your website is required to implement the following:
+● Within the entirety of your site, you should have the following JavaScript
+functionality:
+○ Create a functional “Save for later” page for your website, where users
+can earmark articles, images, recipes, etc. in a personal folder to be
+able to go back and see them later.
+○ Each item/recipe/image, etc. must have the option to “Save for later”.
+○ When an item is added, an alert should tell the user how many items
+are in their “Save for later” folder.
+○ Create a new HTML page for the “Save for later” section, which allows
+the user to see what is in their folder.
+○ Create a form which allows a user to leave comments.
+○ Create forms to allow a user to “like” an item/article/etc.
+○ Create forms for if a person would like to contact you. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Arnold Twala">
+    <script src="https://kit.fontawesome.com/724c68c0fa.js" crossorigin="anonymous"></script>
+    <!-- google fonts links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap"
+        rel="stylesheet">
+        <!-- icon for the webpage Tab -->
+    <link rel="icon" type="image/png" href="./images/logo.png" sizes="48x48">
+    <link rel="stylesheet" href="style.css">
+    <title>Shaped by the Pages</title>
+</head>
+
+<body>
+    <!-- this is the heading, and navigation menu for all three pages -->
+    <header id="top">
+        <div class="logo">
+            <img src="./Images/logo.png" alt="Logo" width="55" height="55">
+            <h1><a href="index.html">Shaped by the Pages</a></h1>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+                <li><a href="saveForLater.html">Save for Later</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- the main container for the home page with seven sections-->
+        <div class="main container">
+                <div class="intro">
+                    <h2>How Reading Transformed my Life</h2>
+                    <p>Welcome to my website, where I share my passion for reading. Reading is more than 
+                        just a hobby for me; it is a way of exploring new worlds, learning new things, 
+                        and connecting with different perspectives. Whether you are an avid reader 
+                        or a casual one, I hope you will find something here that sparks your interest 
+                        and inspires you to read more.</p> <br>
+                    <p>Books have always been my constant companions, opening a window to new worlds 
+                        and perspectives. They have shaped my thoughts and actions, helping me evolve 
+                        into a better version of myself, and at the same time guiding,
+                        shaping the unique person that I am today. Here are some of the books
+                        that have had a profound impact on my life.</p>
+                </div>
+                <div class="self-improvement" id="selfImprovement">
+                    <section>
+                        <h3>Discovering the Power of Self-Improvement</h3>
+                        <p>In my early years, an introduction to self-help books like <em>Think and Grow 
+                            Rich</em> by <strong>Napoleon Hill</strong>, <strong>Emerson's</strong> <em> 
+                                Self-Reliance</em> and <em>Rethink: How to Think Differently</em> 
+                                by <strong>Nigel May Barlow</strong> was nothing less than a revelation.
+                            These books provided a roadmap for personal development and honed my 
+                            perspective towards success and life. Hill's philosophy of turning desire 
+                            into reality made me realize the potential that lies within
+                            me. <em>Emerson's Self-Reliance</em> evoked a sense of individualism, 
+                            inspiring me to trust my abilities and stand up against societal norms. 
+                            Finally, Barlow's <em>Rethink</em>encouraged me to challenge
+                            conventional thinking and explore out-of-the-box solutions, fostering 
+                            creativity and innovation in my daily life.
+                        </p>
+                        <p id="likeCount1">0 Likes</p>
+                        <i class="fa-solid fa-thumbs-up fa-bounce" onclick="likeArticle('1')" title="Like"></i>
+                        <i class="fa-sharp fa-solid fa-comment fa-beat" onclick="openCommentBox('1')" title="Comment"></i>
+                        <i class="fa-solid fa-floppy-disk fa-bounce" onclick="saveForLater('selfImprovement')" title="Save for Later"></i>
+                        <div id="comments1"></div>
+                    </section>
+                </div>
+                <div class="aside">
+                    <aside>
+                        <!-- A radio button form -->
+                        <form id="genreForm">
+                            <h3>What is your favourite book genre:</h3>
+                            <input type="radio" name="genre" id="fantasy" value="fantasy">
+                            <label for="fantasy">Fantasy</label><br>
+                            <input type="radio" name="genre" id="fiction" value="fiction">
+                            <label for="fiction">Fiction</label><br>
+                            <input type="radio" name="genre" id="non-fiction" value="non-fiction">
+                            <label for="non-fiction">Non-Fiction</label><br>
+                            <input type="radio" name="genre" id="self-improvement" value="self-improvement">
+                            <label for="self-improvement">Self-Improvement</label><br>
+                            <input type="radio" name="genre" id="biography" value="biography">
+                            <label for="biography">Biography</label><br>
+                            <input type="radio" name="genre" id="other" value="other">
+                            <label for="other">Other</label><br>
+                            <input type="submit" value="Submit">
+                            <i class="fa-sharp fa-solid fa-comment fa-beat" onclick="openCommentBox('2')" title="Comment"></i>
+                            <i class="fa-solid fa-floppy-disk fa-bounce" onclick="saveForLater('genreForm')" title="Save for later"></i>
+                            <div id="comments2"></div>
+                        </form>
+                    </aside>
+                </div>
+                <div class="fantasy" id="fantasySection">
+                    <section>
+                        <h3>Escaping Reality: The Fascination with Fantasy</h3>
+                        <p>My journey into the realm of fantasy, specifically the magical universe of <em>Harry Potter</em>, was
+                            like stepping through the Platform 9¾ to Hogwarts. <strong>Rowling's</strong> storytelling introduced me
+                            to a world where anything was possible and courage and friendship triumphed over all adversities. This
+                            fantastical exposure helped me develop a rich imagination and boosted my creative thinking abilities. I
+                            discovered that fantasy literature doesn't just transport us to different realms but also provides
+                            essential life lessons clothed in magic and wonder. The battles of Harry, Hermione, and Ron against
+                            various adversities instilled in me the values of resilience, loyalty, and courage.</p>
+                            <p id="likeCount2">0 Likes</p>
+                            <i class="fa-solid fa-thumbs-up fa-bounce" onclick="likeArticle('2')" title="Like"></i>
+                            <i class="fa-sharp fa-solid fa-comment fa-beat" onclick="openCommentBox('3')" title="Comment"></i>
+                            <i class="fa-solid fa-floppy-disk fa-bounce" onclick="saveForLater('fantasySection')" title="Save for later"></i>
+                            <div id="comments3"></div>
+                    </section>
+                </div>
+                <div class="non-fiction" id="nonFiction">
+                    <section>
+                        <h3>Understanding the Human Mind: The Fascination with Psychology</h3>
+                        <p>My fascination with psychology began with <em>Thinking, Fast and Slow</em> by <strong>Daniel
+                                Kahneman</strong>.
+                            This book introduced me to the two systems of thinking, the fast and the slow, and how they influence
+                            our decision-making process. It made me aware of the biases that affect our judgment and how we can
+                            overcome them. This book was a revelation, helping me understand the human mind and how it works. It
+                            also sparked my interest in psychology, which led me to pursue a degree in psychology.</p>
+                            <p id="likeCount3">0 Likes</p>
+                            <i class="fa-solid fa-thumbs-up fa-bounce" onclick="likeArticle('3')" title="Like"></i>
+                            <i class="fa-sharp fa-solid fa-comment fa-beat" onclick="openCommentBox('4')" title="Comment"></i>
+                            <i class="fa-solid fa-floppy-disk fa-bounce" onclick="saveForLater('nonFiction')" title="Save for later"></i>
+                            <div id="comments4"></div>
+                    </section>
+                </div>
+                <div class="fiction" id="fictionSection">
+                <section>
+                    <h3>Unraveling Mysteries: The Allure of Historical Fiction</h3>
+                    <p>Venturing into historical fiction, <em>The Secret Supper</em> by <strong>Javier Sierra</strong> was a
+                        riveting experience that combined my love for art, history, and thrill. This book, set around the Last
+                        Supper by Leonardo Da Vinci, sparked my curiosity, making me question and analyze details that often go
+                        unnoticed. This meticulously crafted narrative, interwoven with suspense and historical facts, gave me a
+                        sense of being a part of a grander plot. Reading this genre strengthened my analytical skills and made
+                        me appreciate the intricate art of storytelling that illuminates past events in a thrilling manner. It
+                        taught me to look beneath the surface, decode symbols, and appreciate the complexity of human
+                        narratives.</p>
+                        <p id="likeCount4">0 Likes</p>
+                        <i class="fa-solid fa-thumbs-up fa-bounce" onclick="likeArticle('4')" title="Like"></i>
+                        <i class="fa-sharp fa-solid fa-comment fa-beat" onclick="openCommentBox('5')" title="Comment"></i>
+                        <i class="fa-solid fa-floppy-disk fa-bounce" onclick="saveForLater('fictionSection')" title="Save for later"></i>
+                        <div id="comments5"></div>
+                </section>
+                </div>
+                <div class="outro">
+                    <p>In the tapestry of life, reading was the thread that added colour and vibrancy. Every page turned opened a
+                        new world, each book read shaped a new thought, and every character encountered taught a valuable
+                        lesson, making me the person I am today.</p>
+                    <blockquote>
+                        <p>“Nothing great was ever achieved without enthusiasm.”</p>
+                        <cite>Ralph Waldo Emerson</cite>
+                    </blockquote>
+                </div>  
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form id="commentForm">
+                    <textarea id="commentText" maxlength="200" placeholder="Leave a comment..."></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <!-- A link to that takes you back to the top of the page -->
+    <a href="#top">Back to top</a>
+    <!-- A footer that contains name and the date the website was created, all three pages uses the same footer -->
+    <footer>
+        <p>A passion for reading, a gift for book lovers.</p>
+        <p>Created by: <a href="https://www.linkedin.com/in/arnoldtwl/">Arnold Twala</a></p>
+        <p>&copy; 2023 Shaped by the Pages. All rights reserved.</p>
+    </footer>
+    <script src="comments.js"></script>
+    <script src="genreForm.js"></script>
+    <script src="saveForLater.js"></script>
+    <script src="likeArticle.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,576 @@
+/* CSS Document divided into global styling for the whole website, css styles for different pages of the website, and media queries */
+
+/* Global styling for the whole website */
+/*  The default box-sizing,
+margin,
+and padding for all elements on a web page. The `*` selector is used to target all elements,
+and the `::before` and `::after` pseudo-elements are also targeted to ensure that they inherit the same styles. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #E7CBCB;
+    text-align: center;
+    font-size: 16px;
+
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    border-bottom: 1px solid #ccc;
+    background-color: #99627A;
+}
+
+header h1 a {
+    font-size: 2.625rem;
+    font-family: 'Sacramento', cursive;
+    color: black;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: normal;
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+p {
+    line-height: 1.5;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    font-family: 'Sacramento', cursive;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nav-menu li a {
+    font-family: 'Sacramento', cursive;
+    color: black;
+}
+
+.nav-menu li :hover {
+    color: #66BFBF;
+}
+
+ul {
+    list-style-type: none;
+
+}
+
+li {
+    display: inline-block;
+    margin: 0 1em;
+    font-family: 'Montserrat', sans-serif;
+} 
+
+i {
+    color: #2554b4;
+    font-size: 1.5em;
+    margin: 0 0.4em;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    border-top: 1px solid #ccc;
+    background-color: #99627A;
+}
+
+footer p {
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+footer a {
+    color: black;
+}
+
+footer a:hover {
+    color: #66BFBF;
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* This is Home page CSS styling
+ */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 1em;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.container>div {
+    padding: 1em;
+    border: 1px solid #ccc;
+}
+
+.container .intro {
+    grid-column: span 3;
+}
+
+.container .intro h2 {
+    font-size: 1.6em;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+
+.container .intro p {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.container .self-improvement {
+    grid-column: span 2;
+}
+
+.container h3 {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+
+.container .outro {
+    grid-column: span 3;
+}
+
+.container .outro p {
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+
+
+.container .fantasy,
+.container .fiction,
+.container .non-fiction {
+    background-color: #C88EA7;
+    color: black;
+    border: black 5px double;
+    border-radius: 5px;
+    padding: 1em;
+    font-size: 0.9em;
+}
+
+.container .aside {
+    background: url('images/booksshelved.jpg') no-repeat center center;
+    background-size: cover;
+    color: #ff0270;
+    border-radius: 5px;
+    text-align: left;
+    padding: 1em;
+    font-size: 1em;
+}
+
+/* aside form radio button */
+.container .aside input[type="radio"] {
+    margin: 0.5em 0;
+}
+
+.container .aside input[type="submit"] {
+    background-color: #99627A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .container .intro {
+        grid-column: span 2;
+    }
+
+    .container .self-improvement {
+        grid-column: span 1;
+    }
+
+    .container .fantasy {
+        grid-column: span 2;
+    }
+
+    .container .aside,
+    .container .fiction,
+    .container .non-fiction {
+        grid-column: span 1;
+    }
+
+    .container .outro {
+        grid-column: span 2;
+    }
+}
+
+@media screen and (max-width: 610px) {
+    header {
+        flex-direction: column;
+    }
+
+    .logo {
+        margin-bottom: 1em;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+    }
+
+    .nav-menu li {
+        margin: 0.5em 0;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .container .intro,
+    .container .self-improvement,
+    .container .aside,
+    .container .fantasy,
+    .container .fiction,
+    .container .non-fiction,
+    .container .outro {
+        grid-column: span 1;
+    }
+}
+
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* This is About Page of the website CSS styling
+ */
+/* This is About Page of the website CSS styling
+ */
+.about-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-page div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-page div img {
+    border-radius: 50%;
+}
+
+.about-page div h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.about-page div p {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+
+.about-page div p a {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.about-page div p a:hover {
+    color: #ccc;
+}
+
+.about-page hr {
+    width: 100%;
+    margin: 2rem 0;
+}
+
+.about-page .about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #C88EA7;
+}
+
+.about-page .education {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-page .education h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.about-page .education ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.about-page .education ul li {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+
+.about-page .work {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-page .work h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.about-page .work table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 4px solid #643843;
+}
+
+.about-page .work table thead {
+    background-color: #ccc;
+    border: 4px solid #643843;
+}
+
+.about-page .work table thead th {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem 0;
+    border: 4px solid #643843;
+}
+
+.about-page .work table tbody tr td {
+    font-size: 1.2rem;
+    padding: 1rem 0;
+    border: 4px solid #643843;
+}
+
+.about-page .skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.about-page .skills h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.about-page hr {
+    border-style: none;
+    border-top-style: dotted;
+    border-width: 8px;
+    border-color: rgba(128, 128, 128, 0.358);
+    width: 6%;
+}
+
+.about-page #image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-page #icons {
+    display: flex;
+    justify-content: space-between;
+    width: 100px; /* you can adjust this value to add more or less space between the icons */
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+/* This is Contact Page of the website CSS styling */
+
+
+.contact-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url('images/open-book.png') no-repeat center center;
+    background-size: cover;
+}
+
+.contact-page h3 {
+    color: #ccc;
+    margin-top: 1rem;
+}
+
+.contact-page p {
+    color: #ccc;
+    margin: 1rem 0;
+}
+
+.contact-page h4 {
+    color: #ccc;
+    margin: 1rem 0;
+}
+
+.contact-page form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+}
+
+.contact-page form label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.contact-page form input,
+.contact-page form textarea {
+    width: 30%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-page form button {
+    width: 20%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ccc;
+    font-size: 1 rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.contact-page form button:hover {
+    background-color: #eee;
+}
+
+.contact-page ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.contact-page ul li {
+    margin: 0 1rem;
+}
+
+.contact-page ul li a:hover {
+    color: #ccc;
+}
+
+.contact-page p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.contact-page p a {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ccc;
+}
+
+.contact-page p a:hover {
+    color: rgb(212, 12, 235);
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////////// */
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+

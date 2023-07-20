@@ -21,5 +21,5 @@ To run the project, simply open the `index.html` file in any web browser.
 - `style.css`: The main CSS file containing styles for the website.
 - `images/`: Folder containing images used on the website.
 
-## References
-(https://www.telerik.com/blogs/save-for-later-feature-in-forms-using-localstorage)
+## Authors
+Author: **[Arnold Twala]()**

@@ -52,18 +52,55 @@
             // get the container where the saved items will be displayed
             let savedItemsContainer = document.getElementById("savedItemsContainer");
 
+            // Clear the saved items container
+            savedItemsContainer.innerHTML = '';
+
             // Add each saved item to the div
             savedItems.forEach(item => {
+                // Create a new div for the item and its delete button
+                let itemDiv = document.createElement('div');
+
                 // If the content is an HTML element, append it directly
                 if (item.content instanceof HTMLElement) {
-                    savedItemsContainer.appendChild(item.content);
+                    itemDiv.appendChild(item.content);
                 } else {
                     // If the content is not an HTML element (for example, if it's a string),
                     // create a new text node with the content and append that
                     let textNode = document.createTextNode(item.content);
-                    savedItemsContainer.appendChild(textNode);
+                    itemDiv.appendChild(textNode);
                 }
+
+                // Create a delete button
+                let deleteButton = document.createElement('button');
+                deleteButton.className = 'deleteButton'; // Add a CSS class to the deleteButton
+                deleteButton.innerText = "Delete";
+                deleteButton.onclick = function () {
+                    deleteSavedItem(item.id)
+                };
+
+                // Append the delete button to the item div
+                itemDiv.appendChild(deleteButton);
+
+                // Append the item div to the saved items container
+                savedItemsContainer.appendChild(itemDiv);
             })
+        }
+
+        // 
+        function deleteSavedItem(itemId) {
+
+            let saveForLaterItems = JSON.parse(localStorage.getItem('saveForLater'));
+            // Filter out the item with the given ID
+            saveForLaterItems = saveForLaterItems.filter(item => item.id !== itemId);
+
+            // Save back to localStoragex
+            localStorage.setItem('saveForLater', JSON.stringify(saveForLaterItems));
+
+            // Alert the user that the item has been deleted
+            alert("Item deleted. You now have " + saveForLaterItems.length + " item(s) in your folder.");
+
+            // Re-display the saved items
+            displaySavedItems();
         }
     </script>
     <footer>
@@ -71,9 +108,10 @@
         <p>Created by: <a href="https://www.linkedin.com/in/arnoldtwl/">Arnold Twala</a></p>
         <p>&copy; 2023 Shaped by the Pages. All rights reserved.</p>
     </footer>
-    <script src="saveForLater.js"></script>
+    <script src="./saveForLater.js"></script>
 </body>
-    
+
 </html>
+
 
    

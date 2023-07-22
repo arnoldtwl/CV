@@ -31,19 +31,18 @@ document.getElementById('commentForm').addEventListener('submit', function (e) {
     e.preventDefault(); // Prevent the default form submission behaviour
 
     const commentText = document.getElementById('commentText').value; // Get the comment text
-    let newComment = document.createElement('p'); // Create a new paragraph element
-
-    // Add the comment text to the paragraph element
-    newComment.textContent = commentText;
-
-    // Add the paragraph element to the article
-    document.getElementById('comments' + currentArticleId).appendChild(newComment);
 
     // Save the comment to localStorage.
     let storedComments = localStorage.getItem('comments' + currentArticleId);
     let comments = storedComments ? JSON.parse(storedComments) : [];
     comments.push(commentText);
     localStorage.setItem('comments' + currentArticleId, JSON.stringify(comments));
+
+
+    let newComment = createCommentElement(commentText, currentArticleId, comments.length -1);
+
+    // Add the comment element to the article
+    document.getElementById('comments' + currentArticleId).appendChild(newComment);
 
     document.getElementById('commentText').value = ''; // Clear the comment text field
 
@@ -53,30 +52,59 @@ document.getElementById('commentForm').addEventListener('submit', function (e) {
 // Load the comments from localStorage
 window.onload = function () {
     for (let i = 1; i <= 5; i++) {
+        // Clear the comments container
+        document.getElementById('comments' + i).innerHTML = '';
+
         let storedComments = localStorage.getItem('comments' + i);
         let comments = storedComments ? JSON.parse(storedComments) : [];
-        comments.forEach(function (comment) {
-            let newComment = document.createElement('p'); // Create a new paragraph element
-            newComment.textContent = comment; // Add the comment text to the paragraph element
-            document.getElementById('comments' + i).appendChild(newComment); // Add the paragraph element to the article
+
+        comments.forEach(function (comment, index) {
+            // Create the comment element
+            let newComment = createCommentElement(comment, i, index)
+            
+            // Add the paragraph element to the article
+            document.getElementById('comments' + i).appendChild(newComment); 
         });
     }
 }
 
+function createCommentElement(comment, articleId, commentIndex) {
+    // Create a div for the comment
+    let commentDiv = document.createElement('div');
+    commentDiv.className = 'commentDiv';
 
-// //////////////////////////////////////////////////////////////////////////
+    // Create a paragraph for the comment text
+    let commentPara = document.createElement('p');
+    commentPara.textContent = comment;
 
-// ////////////////////////////////////////////////////////////////////////////////////////
+    // Create a delete button
+    let deleteButton = document.createElement('button');
+    deleteButton.className = 'deleteButton'; // Add a CSS class to the deleteButton
+    deleteButton.innerText = "Delete";
+    deleteButton.onclick = function() {
+        deleteComment(articleId, commentIndex)
+    };
 
+    // Append the comment paragraph and delete button to the comment div
+    commentDiv.appendChild(commentPara);
+    commentDiv.appendChild(deleteButton);
 
+    return commentDiv
 
-// ///////////////////////////////////////////////////////////////////////////////////////
-// Variables for the comments
+}
 
+function deleteComment(articleId, commentIndex) {
+    let storedComments = localStorage.getItem('comments', articleId);
+    let comments = storedComments ? JSON.parse(storedComments) : [];
 
+    // Remove the comment at the given index
+    comments.splice(commentIndex, 1);
 
+    // Save back to localStorage
+    localStorage.setItem('comments' + articleId, JSON.stringify(comments));
 
-
-// ///////////////////////////////////////////////////////////////////////////////////////////
+    // Re-display the comments
+    window.onload();
+}
 
 

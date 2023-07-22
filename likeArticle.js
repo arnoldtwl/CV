@@ -22,10 +22,10 @@ let likes = {
  * @type {Object.<string, boolean>}
  */
 let liked = {
-    '1': localStorage.getItem('liked1') ? localStorage.getItem('liked1') : false,
-    '2': localStorage.getItem('liked2') ? localStorage.getItem('liked2') : false,
-    '3': localStorage.getItem('liked3') ? localStorage.getItem('liked3') : false,
-    '4': localStorage.getItem('liked4') ? localStorage.getItem('liked4') : false,
+    '1': localStorage.getItem('liked1') === 'true',
+    '2': localStorage.getItem('liked2') === 'true',
+    '3': localStorage.getItem('liked3') === 'true',
+    '4': localStorage.getItem('liked4') === 'true',
 };
 
 /**
@@ -58,20 +58,23 @@ if (liked['3']) document.getElementById('likeCount3').style.pointerEvents = "non
 if (liked['4']) document.getElementById('likeCount4').style.pointerEvents = "none";  
 
 /**
- * This function increments the like count for a given article ID and disables the like button.
- * It first checks if the user has already liked the article by checking the liked status for the given ID.
+ * This function toggles the like status for a given article ID.
  * If the user has not liked the article, it increments the like count, sets the liked status to true, and stores both values in localStorage.
- * It then updates the like count element with the new like count and disables the like button.
- * @param {string} id - The ID of the article to like.
+ * If the user has already liked the article, it decrements the like count, sets the liked status to false, and stores both values in localStorage.
+ * It then updates the like count element with the new like count.
+ * @param {string} id - The ID of the article to like or unlike.
  * @returns {void}
  */
 function likeArticle(id) {
     if (!liked[id]) {
         likes[id]++; // Increment the like count
         liked[id] = true; // Set the liked status to true
-        localStorage.setItem('likes' + id, likes[id]); // Store the like count in localStorage
-        localStorage.setItem('liked' + id, liked[id]); // Store the liked status in localStorage
-        document.getElementById('likeCount' + id).innerText = likes[id] + " Likes"; // Update the like count
-        document.getElementById('likeCount' + id).style.pointerEvents = "none";  // Changed from 'likeButton'
+    } else {
+        likes[id]--; // Decrement the like count
+        liked[id] = false; // Set the liked status to false
     }
+
+    localStorage.setItem('likes' + id, likes[id]); // Store the like count in localStorage
+    localStorage.setItem('liked' + id, liked[id]); // Store the liked status in localStorage
+    document.getElementById('likeCount' + id).innerText = likes[id] + " Likes"; // Update the like count element   
 }
